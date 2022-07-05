@@ -1,0 +1,263 @@
+@use './reset';
+@use './helpers'as var;
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  font-family: var.$fontFamily;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url(../images/bg-pattern-desktop.svg) no-repeat;
+  background-position: left;
+  background-size: 75%;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 0.4fr 1fr auto;
+  grid-template-areas:
+    "header hero"
+    "content hero"
+    "footer hero";
+
+  @media (max-width: var.$resTablet) {
+    background-position: bottom;
+    background-size: 100%;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: "header""hero""content""footer";
+  }
+  @media (max-width: var.$resMobile) {
+    background-size: cover;
+  }
+}
+
+main .header {
+  grid-area: header;
+  display: inline-flex;
+
+  &__logo {
+    margin: auto;
+    width: 650px;
+
+    >img {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  // header media queries
+  @media (max-width: var.$resLaptopL) {
+    &__logo {
+      width: 500px;
+    }
+  }
+
+  @media (max-width: var.$resLaptopM) {
+    &__logo>img {
+      height: 28px;
+    }
+  }
+
+  @media (max-width: var.$resTablet) {
+    &__logo {
+      padding: 40px 0;
+      width: min(650px, 80%);
+    }
+  }
+
+  @media (max-width: var.$resMobile) {
+    &__logo {
+      padding: 30px 0;
+
+      >img {
+        height: 23px;
+      }
+    }
+  }
+}
+
+main .hero {
+  grid-area: hero;
+
+  picture,
+  source {
+    display: block;
+  }
+
+  img {
+    width: auto;
+    height: 100vh;
+  }
+
+  // hero media queris
+  @media (max-width: var.$resTablet) {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+}
+
+main .content {
+  grid-area: content;
+  margin: 0 auto;
+  width: 650px;
+
+  &__title {
+    white-space: pre-line; // new line every word
+    color: var.$graishRed;
+    font-size: clamp(3rem, 4vw, 5rem);
+    font-weight: 600;
+    letter-spacing: 0.8rem;
+    line-height: 1.2;
+
+    span {
+      color: var.$desaturatedRed;
+      font-weight: 300;
+    }
+  }
+
+  &__text {
+    margin: 25px 0 35px 0;
+    width: min(450px, 100%);
+    color: var.$desaturatedRed;
+  }
+
+  &__form {
+    position: relative;
+    width: min(450px, 100%);
+
+    .form-group {
+      position: relative;
+      display: flex;
+      width: 100%;
+
+      >input[type=email] {
+        all: unset;
+        flex-grow: 1;
+        margin-right: -2.5rem;
+        padding: 0.8rem 1.4rem;
+        border: 1px solid var.$desaturatedRed;
+        border-radius: 50vh 0 0 50vh; // relative to height
+
+        &::placeholder {
+          color: rgba(var.$desaturatedRed, 0.5);
+        }
+      }
+
+      >button[type=submit] {
+        all: unset;
+        padding: 0 2.5rem;
+        background: var.$gradient;
+        border-radius: 50vh; // relative to height
+        font-size: 0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        // button icon
+        &::before {
+          content: url(../images/icon-arrow.svg);
+        }
+
+        &:hover,
+        &:focus {
+          &:not(:active) {
+            box-shadow: 0 2px 8px 2px rgba(var.$graishRed, 0.3);
+          }
+        }
+      }
+
+      // error message
+      &__error-message {
+        position: absolute;
+        left: 1.5rem;
+        bottom: -1.5rem;
+        color: var.$softRed;
+      }
+
+      // form-group error icon
+      &::before {
+        content: url('../images/icon-error.svg');
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        transform: translateY(-50%);
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      &__error-message,
+      &::before {
+        transition: all 0.3s ease;
+        // hide error message and icon
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      // on form-group error (will be set on js)
+      &.err {
+        >input[type=email] {
+          border-color: var.$softRed;
+        }
+
+        .form-group__error-message,
+        &::before {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // content media queries
+  @media (max-width: var.$resLaptopL) {
+    width: 500px;
+  }
+
+  @media (max-width: var.$resLaptopM) {
+    &__title {
+      letter-spacing: 0.5rem;
+    }
+
+    &__form {
+      >input[type=email] {
+        padding: 0.8rem 2rem;
+      }
+    }
+  }
+
+  @media (max-width: var.$resTablet) {
+    width: min(650px, 85%);
+    margin: 50px auto 20px auto;
+
+    >* {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &__title,
+    &__text {
+      text-align: center;
+    }
+  }
+}
+
+main .footer {
+  width: 100%;
+
+  .attribution {
+    font-size: 11px;
+    text-align: center;
+
+    a {
+      color: hsl(228, 45%, 44%);
+    }
+  }
+}

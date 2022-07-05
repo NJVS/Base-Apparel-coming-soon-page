@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap");
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  width: 100%;
+  height: auto;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url(../images/bg-pattern-desktop.svg) no-repeat;
+  background-position: left;
+  background-size: 75%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 0.4fr 1fr auto;
+  grid-template-areas: "header hero" "content hero" "footer hero";
+}
+@media (max-width: 912px) {
+  main {
+    background-position: bottom;
+    background-size: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: "header" "hero" "content" "footer";
+  }
+}
+@media (max-width: 412px) {
+  main {
+    background-size: cover;
+  }
+}
+
+main .header {
+  grid-area: header;
+  display: inline-flex;
+}
+main .header__logo {
+  margin: auto;
+  width: 650px;
+}
+main .header__logo > img {
+  width: auto;
+  height: auto;
+}
+@media (max-width: 1440px) {
+  main .header__logo {
+    width: 500px;
+  }
+}
+@media (max-width: 1366px) {
+  main .header__logo > img {
+    height: 28px;
+  }
+}
+@media (max-width: 912px) {
+  main .header__logo {
+    padding: 40px 0;
+    width: min(650px, 80%);
+  }
+}
+@media (max-width: 412px) {
+  main .header__logo {
+    padding: 30px 0;
+  }
+  main .header__logo > img {
+    height: 23px;
+  }
+}
+
+main .hero {
+  grid-area: hero;
+}
+main .hero picture,
+main .hero source {
+  display: block;
+}
+main .hero img {
+  width: auto;
+  height: 100vh;
+}
+@media (max-width: 912px) {
+  main .hero img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+main .content {
+  grid-area: content;
+  margin: 0 auto;
+  width: 650px;
+}
+main .content__title {
+  white-space: pre-line;
+  color: #413a3a;
+  font-size: clamp(3rem, 4vw, 5rem);
+  font-weight: 600;
+  letter-spacing: 0.8rem;
+  line-height: 1.2;
+}
+main .content__title span {
+  color: #ce9797;
+  font-weight: 300;
+}
+main .content__text {
+  margin: 25px 0 35px 0;
+  width: min(450px, 100%);
+  color: #ce9797;
+}
+main .content__form {
+  position: relative;
+  width: min(450px, 100%);
+}
+main .content__form .form-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+main .content__form .form-group > input[type=email] {
+  all: unset;
+  flex-grow: 1;
+  margin-right: -2.5rem;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid #ce9797;
+  border-radius: 50vh 0 0 50vh;
+}
+main .content__form .form-group > input[type=email]::placeholder {
+  color: rgba(206, 151, 151, 0.5);
+}
+main .content__form .form-group > button[type=submit] {
+  all: unset;
+  padding: 0 2.5rem;
+  background: linear-gradient(135deg, #f8bfbf, #ee8c8c);
+  border-radius: 50vh;
+  font-size: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+main .content__form .form-group > button[type=submit]::before {
+  content: url(../images/icon-arrow.svg);
+}
+main .content__form .form-group > button[type=submit]:hover:not(:active), main .content__form .form-group > button[type=submit]:focus:not(:active) {
+  box-shadow: 0 2px 8px 2px rgba(65, 58, 58, 0.3);
+}
+main .content__form .form-group__error-message {
+  position: absolute;
+  left: 1.5rem;
+  bottom: -1.5rem;
+  color: #f96262;
+}
+main .content__form .form-group::before {
+  content: url("../images/icon-error.svg");
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+main .content__form .form-group__error-message, main .content__form .form-group::before {
+  transition: all 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+main .content__form .form-group.err > input[type=email] {
+  border-color: #f96262;
+}
+main .content__form .form-group.err .form-group__error-message, main .content__form .form-group.err::before {
+  visibility: visible;
+  opacity: 1;
+}
+@media (max-width: 1440px) {
+  main .content {
+    width: 500px;
+  }
+}
+@media (max-width: 1366px) {
+  main .content__title {
+    letter-spacing: 0.5rem;
+  }
+  main .content__form > input[type=email] {
+    padding: 0.8rem 2rem;
+  }
+}
+@media (max-width: 912px) {
+  main .content {
+    width: min(650px, 85%);
+    margin: 50px auto 20px auto;
+  }
+  main .content > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  main .content__title, main .content__text {
+    text-align: center;
+  }
+}
+
+main .footer {
+  width: 100%;
+}
+main .footer .attribution {
+  font-size: 11px;
+  text-align: center;
+}
+main .footer .attribution a {
+  color: #3e52a3;
+}
+
+/*# sourceMappingURL=styles.css.map */
