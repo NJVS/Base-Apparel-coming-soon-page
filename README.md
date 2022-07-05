@@ -11,9 +11,7 @@ This is a solution to the [Base Apparel coming soon page challenge on Frontend M
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
-- [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
 ## Overview
@@ -31,13 +29,15 @@ Users should be able to:
 ### Screenshot
 
 ![](./design/Desktop.png)
+
 ![](./design/Tablet.png)
+
 ![](./design/Mobile.png)
 
 ### Links
 
-- Solution URL: [Solution](https://your-solution-url.com)
-- Live Site URL: [Live](https://your-live-site-url.com)
+- Solution URL: [Solution](https://github.com/NJVS/Base-Apparel-coming-soon-page.git)
+- Live Site URL: [Live](https://njvs.github.io/Base-Apparel-coming-soon-page/)
 
 ## My process
 
